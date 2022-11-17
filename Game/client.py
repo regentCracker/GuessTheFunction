@@ -16,7 +16,20 @@ address = str(input())
 s = socket.socket()
 s.connect((address, 8820))
 
-s.send("echo ".encode())
+ans = "0"
+while(ans=="0"):
+    print("Enter username:")
+    username = str(input())
+    s.send(username.encode())
+    ans = s.recv(1024).decode()
+
+def get_players():
+    s.send("cmd:get_players".encode())
+
+
+
+
+
 #check delay later
 data = s.recv(1024).decode()
 print(data)
